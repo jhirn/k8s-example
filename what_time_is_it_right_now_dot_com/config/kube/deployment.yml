@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: what-time-is-it-right-now-dot-com
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: what-time-is-it-right-now-dot-com
+  template:
+    metadata:
+      labels:
+        app: what-time-is-it-right-now-dot-com
+    spec:
+      containers:
+        - name: app
+          image: jhirn/what-time-is-it-right-now-dot-com:latest # TODO: Deploy specific version
+          ports:
+            - containerPort: 3000
+          env:
+            - name: RAILS_MASTER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: rails_master_key
+          envFrom:
+            - configMapRef:
+                name: app-config
+          resources:
+            requests:
+              memory: '256Mi'
+              cpu: '100m'
+            limits:
+              memory: '512Mi'
+              cpu: '200m'
+          readinessProbe:
+            httpGet:
+              path: /up
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10

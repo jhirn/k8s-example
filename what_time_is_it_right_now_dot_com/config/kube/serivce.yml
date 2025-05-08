@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: what-time-is-it-right-now-dot-com
+spec:
+  selector:
+    app: what-time-is-it-right-now-dot-com
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 30000
+  type: NodePort
