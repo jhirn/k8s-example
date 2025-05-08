@@ -22,7 +22,7 @@ Rails.application.configure do
   else
     config.action_controller.perform_caching = false
   end
-
+  config.serve_static_files = false
   # Change to :null_store to avoid any caching.
   config.cache_store = :memory_store
 

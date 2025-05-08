@@ -11,7 +11,7 @@ Rails.application.configure do
 
   # Full error reports are disabled.
   config.consider_all_requests_local = false
-
+  config.serve_static_files = false
   # Cache assets for far-future expiry since they are all digest stamped.
   config.public_file_server.headers = { "cache-control" => "public, max-age=#{1.year.to_i}" }
 
