@@ -3,10 +3,11 @@ kind: Service
 metadata:
   name: what-time-is-it-right-now-dot-com
 spec:
+    type: LoadBalancer
   selector:
     app: what-time-is-it-right-now-dot-com
   ports:
-    - port: 3000
+    - protocol: TCP
+      port: 80
       targetPort: 3000
-      nodePort: 30000
-  type: NodePort
+      name: http
