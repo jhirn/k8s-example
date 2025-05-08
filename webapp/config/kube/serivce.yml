@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: what-time-is-it-right-now-dot-com
 spec:
-    type: LoadBalancer
+  type: LoadBalancer
   selector:
     app: what-time-is-it-right-now-dot-com
   ports:
