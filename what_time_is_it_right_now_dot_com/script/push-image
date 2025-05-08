@@ -1,0 +1,10 @@
+#! /bin/bash
+
+# Publishes new docker image to repository
+
+cd "$(dirname "$0")/.."
+
+# TODO: Tag specific version
+docker login
+docker build -t jhirn/what-time-is-it-right-now-dot-com:latest .
+docker push jhirn/what-time-is-it-right-now-dot-com:latest

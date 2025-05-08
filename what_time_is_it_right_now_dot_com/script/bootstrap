@@ -1,0 +1,16 @@
+#! /bin/bash -e
+
+## System dependencies via homebrew
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# brew bundle -f .Brewfile
+
+## Install ruby
+# rbenv install
+
+## Rails setup
+# ./bin/setup
+
+## Enable Kubernetes
+# defaults write com.docker.docker KubernetesEnabled -bool true
+# osascript -e 'quit app "Docker"'
+# open -a Docker

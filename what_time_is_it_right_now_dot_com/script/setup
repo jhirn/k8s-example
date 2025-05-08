@@ -1,0 +1,6 @@
+#! /bin/bash
+
+cd "$(dirname "$0")/.."
+
+# Built-in Rails setup
+# ./bin/setup

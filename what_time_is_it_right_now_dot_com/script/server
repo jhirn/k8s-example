@@ -1,0 +1,6 @@
+#! /bin/bash
+
+# bin/bundle install
+# bin/rails db:setup
+# bin/rails server
+# etc...
