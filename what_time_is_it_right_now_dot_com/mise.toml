@@ -1,0 +1,4 @@
+[env]
+
+_.path = ["bin", 'script']
+RAILS_MASTER_KEY = "bbd8c328e46dcea73d48fdbf92d1bcc8"
