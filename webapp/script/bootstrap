@@ -1,8 +1,9 @@
 #! /bin/bash -e
 
+cd "$(dirname "$0")/.."
 ## System dependencies via homebrew
 # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-# brew bundle -f .Brewfile
+brew bundle --file .Brewfile
 
 ## Install ruby
 # rbenv install
