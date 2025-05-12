@@ -1,0 +1,13 @@
+#! /bin/bash -e
+
+cd "$(dirname "$0")/.."
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <environment>"
+  echo "  <environment> is one of: dev, production"
+  exit 1
+fi
+
+namespace=${1:-dev}
+
+helm upgrade --install  wtrn-release-${namespace} ./config/helm/ --values ./config/helm/values.yaml -f ./config/helm/values-${namespace}.yaml -n ${namespace}

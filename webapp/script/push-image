@@ -4,7 +4,8 @@
 
 cd "$(dirname "$0")/.."
 
-# TODO: Tag specific version
+version=${1:-latest}
+
 docker login
-docker build -t jhirn/what-time-is-it-right-now-dot-com:latest .
-docker push jhirn/what-time-is-it-right-now-dot-com:latest
+docker build -t jhirn/what-time-is-it-right-now-dot-com:${version} .
+docker push jhirn/what-time-is-it-right-now-dot-com:${version}

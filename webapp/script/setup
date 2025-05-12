@@ -1,6 +1,9 @@
-#! /bin/bash
+#! /bin/bash -e
 
 cd "$(dirname "$0")/.."
 
 # Built-in Rails setup
-# ./bin/setup
+./bin/setup --skip-server
+
+kubectl create namespace dev
+kubectl create namespace production

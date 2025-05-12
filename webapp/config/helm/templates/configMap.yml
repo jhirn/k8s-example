@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.config_map.name }}
+  namespace: {{ .Values.namespace }}
+data:
+  RAILS_ENV: 'production'

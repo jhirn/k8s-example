@@ -1,0 +1,10 @@
+appName: what-time-is-it-right-now-dot-com
+namespace: default
+replicas: 1
+config_map:
+  name: wtrn-configmap-v1.0.0
+ports:
+  container: 3000
+  service: 80
+image:
+  name: jhirn/what-time-is-it-right-now-dot-com
