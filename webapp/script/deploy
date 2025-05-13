@@ -1,13 +1,32 @@
-#! /bin/bash -e
+#! /bin/bash -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-if [ -z "$1" ]; then
-  echo "Usage: $0 <environment>"
-  echo "  <environment> is one of: dev, production"
-  exit 1
-fi
 
-namespace=${1:-dev}
+prompt_for_environment() {
+  echo "Select the environment:"
+  echo "1) Dev (local)"
+  echo "2) Production"
 
-helm upgrade --install  wtrn-release-${namespace} ./config/helm/ --values ./config/helm/values.yaml -f ./config/helm/values-${namespace}.yaml -n ${namespace}
+  read -r -p "Enter the number (1 or 2): " env_choice
+
+  if [ "$env_choice" == "1" ]; then
+    export ENVIRONMENT="dev"
+    kubectl config use-context minikube
+  elif [ "$env_choice" == "2" ]; then
+    export ENVIRONMENT="production"
+    kubectl config use-context eks-cluster-production
+  else
+    echo "Invalid choice, exiting..."
+    exit 1
+  fi
+}
+
+prompt_for_environment
+
+namespace=${ENVIRONMENT}
+
+helm upgrade --install  wtrn-webapp ./config/helm/ \
+  --values ./config/helm/values.yaml \
+  -f ./config/helm/values-${namespace}.yaml \
+  -n ${namespace}

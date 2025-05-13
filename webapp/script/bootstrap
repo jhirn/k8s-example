@@ -1,4 +1,4 @@
-#! /bin/bash -e
+#! /bin/bash -euo pipefail
 
 cd "$(dirname "$0")/.."
 ## System dependencies via homebrew
