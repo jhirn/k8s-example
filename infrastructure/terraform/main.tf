@@ -10,12 +10,14 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket  = "terraform-state-${terraform.workspace}"
-    key     = "terraform.tfstate"
-    region  = var.aws_region
-    encrypt = true
-  }
+  # Use after bootstrapping bucket to store state in remte backend.
+
+  # backend "s3" {
+  #   bucket  = "jhirn-liatrio-exercise-tf-state"
+  #   key     = "terraform.tfstate"
+  #   region  = "us-west-2"
+  #   encrypt = true
+  # }
 }
 
 provider "aws" {

@@ -1,24 +1,26 @@
-resource "aws_s3_bucket" "terraform_state" {
-  bucket = "wtrn-terraform-state"
+# Commented out because bootstraping the bucket is clunky.
 
-  lifecycle {
-    prevent_destroy = false # false for demo cleanup
-  }
-}
+# resource "aws_s3_bucket" "terraform_state" {
+#   bucket = "jhirn-liatrio-exercise-tf-state"
 
-resource "aws_s3_bucket_versioning" "terraform_state" {
-  bucket = aws_s3_bucket.terraform_state.id
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
+#   lifecycle {
+#     prevent_destroy = false # false for demo cleanup
+#   }
+# }
 
-resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_state" {
-  bucket = aws_s3_bucket.terraform_state.id
+# resource "aws_s3_bucket_versioning" "terraform_state" {
+#   bucket = aws_s3_bucket.terraform_state.id
+#   versioning_configuration {
+#     status = "Enabled"
+#   }
+# }
 
-  rule {
-    apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
-    }
-  }
-}
+# resource "aws_s3_bucket_server_side_encryption_configuration" "terraform_state" {
+#   bucket = aws_s3_bucket.terraform_state.id
+
+#   rule {
+#     apply_server_side_encryption_by_default {
+#       sse_algorithm = "AES256"
+#     }
+#   }
+# }
