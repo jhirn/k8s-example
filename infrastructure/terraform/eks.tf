@@ -14,8 +14,6 @@ module "eks" {
   eks_managed_node_groups = {
     general = var.node_groups_general
   }
-
-  tags = var.tags
 }
 
 resource "null_resource" "update_kubeconfig" {
