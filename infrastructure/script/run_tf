@@ -1,0 +1,59 @@
+#!/bin/bash -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+# Belongs in script/lib/ or something
+bold() {
+  echo -e "\033[1m$*\033[0m"
+}
+
+prompt_for_workspace() {
+  echo "Select the environment to pull the database from:"
+  echo "1) Production"
+  echo "2) Development"
+
+  # Fix for shellcheck SC2162: Using -r with read to prevent backslash escapes
+  read -r -p "Enter the number (1 or 2): " env_choice
+
+  # Set the Heroku app name based on the choice
+  if [ "$env_choice" == "1" ]; then
+    export TF_WORKSPACE="production"
+    export TF_VARS_FILE="tfvars/production.tfvars"
+  elif [ "$env_choice" == "2" ]; then
+    export TF_WORKSPACE="dev"
+    export TF_VARS_FILE="tfvars/dev.tfvars"
+  else
+    echo "Invalid choice, exiting..."
+    exit 1
+  fi
+
+  echo "Using workspace: $TF_WORKSPACE"
+  echo "Using vars file: $TF_VARS_FILE"
+}
+
+exec_terraform() {
+  pushd terraform
+
+  terraform init
+
+  command="${1:-show}"
+  shift || :
+
+
+  echo "  in: $PWD"
+
+   # Add -var-file if command is apply or plan
+  if [[ "$command" == "apply" || "$command" == "plan" ]]; then
+    echo "running $(bold terraform "$command" -var-file="$TF_VARS_FILE" "$@")"
+    terraform "$command" -var-file="$TF_VARS_FILE" "$@" 2>&1
+  else
+    echo "running $(bold terraform "$command" "$@")"
+    terraform "$command" "$@" 2>&1
+  fi
+
+  popd
+}
+
+
+prompt_for_workspace
+exec_terraform "$@"
