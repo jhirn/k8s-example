@@ -1,16 +1,15 @@
-environment  = "development"
-cluster_name = "eks-cluster-${environment}"
+environment  = "production"
+cluster_name = "eks-cluster-production"
 
 # Node Group Configuration
-node_groups = {
-  general = {
-    desired_size   = 1
-    min_size       = 1
-    max_size       = 1
-    instance_types = ["t3.micro"]
-    capacity_type  = "ON_DEMAND"
-  }
+node_groups_general = {
+  desired_size   = 1
+  min_size       = 1
+  max_size       = 1
+  instance_types = ["t3.micro"]
+  capacity_type  = "ON_DEMAND"
 }
+
 # Tags
 tags = {
   Environment = "production"
