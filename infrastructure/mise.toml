@@ -1,2 +1,6 @@
+[env]
+
+_.path = ["script"]
+
 [tools]
 terraform = "latest"

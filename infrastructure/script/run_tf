@@ -8,14 +8,13 @@ bold() {
 }
 
 prompt_for_workspace() {
-  echo "Select the environment to pull the database from:"
+  echo "Select the Terraform workspace:"
   echo "1) Production"
   echo "2) Development"
 
   # Fix for shellcheck SC2162: Using -r with read to prevent backslash escapes
   read -r -p "Enter the number (1 or 2): " env_choice
 
-  # Set the Heroku app name based on the choice
   if [ "$env_choice" == "1" ]; then
     export TF_WORKSPACE="production"
     export TF_VARS_FILE="tfvars/production.tfvars"
