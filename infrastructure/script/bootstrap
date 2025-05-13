@@ -1,0 +1,11 @@
+#! /bin/bash
+
+cd "$(dirname "$0")/.."
+
+pushd terraform
+
+terraform init
+terraform workspace new dev
+terraform workspace new production
+
+popd
