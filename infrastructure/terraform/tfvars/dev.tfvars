@@ -1,4 +1,3 @@
-environment  = "development"
 cluster_name = "eks-cluster-development"
 
 # Node Group Configuration
@@ -12,7 +11,7 @@ node_groups_general = {
 
 # Tags
 tags = {
-  Environment = "dev"
+  Environment = "development"
   ManagedBy   = "terraform"
   Project     = "liatrio-exercise"
 }

@@ -1,4 +1,3 @@
-environment  = "production"
 cluster_name = "eks-cluster-production"
 
 # Node Group Configuration
