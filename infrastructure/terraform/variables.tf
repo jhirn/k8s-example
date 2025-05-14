@@ -29,5 +29,6 @@ variable "node_groups_general" {
     max_size       = number
     instance_types = list(string)
     capacity_type  = string
+    ami_type       = string
   })
 }
