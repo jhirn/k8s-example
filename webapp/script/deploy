@@ -29,4 +29,5 @@ namespace=${ENVIRONMENT}
 helm upgrade --install  wtrn-webapp ./config/helm/ \
   --values ./config/helm/values.yaml \
   -f ./config/helm/values-${namespace}.yaml \
+  --create-namespace \
   -n ${namespace}
