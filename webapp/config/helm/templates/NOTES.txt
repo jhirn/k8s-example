@@ -1,2 +1,21 @@
+{{- if eq .Values.namespace "dev" }}
 Forward ports by running `minikube tunnel` in a separate window.
 After that you can access your app at http://localhost:{{ .Values.ports.service }}
+{{- else }}
+Your application is now deployed to EKS!
+
+{{- $svc := lookup "v1" "Service" .Release.Namespace .Values.appName }}
+{{- if and $svc.status.loadBalancer.ingress (gt (len $svc.status.loadBalancer.ingress) 0) }}
+{{-   $hostname := (index $svc.status.loadBalancer.ingress 0).hostname }}
+{{-   if $hostname }}
+{{-     $url := printf "http://%s" $hostname }}
+You can access your application at: {{ $url }}
+{{-   else }}
+The LoadBalancer hostname is not yet available. Please wait a few minutes and run:
+kubectl get svc {{ .Values.appName }} -n {{ .Values.namespace }} -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
+{{-   end }}
+{{- else }}
+The LoadBalancer is still being provisioned or has no external IP. Please wait a few minutes and run:
+kubectl get svc {{ .Values.appName }} -n {{ .Values.namespace }} -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
+{{- end }}
+{{- end }}
