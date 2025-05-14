@@ -5,7 +5,7 @@ cd "$(dirname "$0")/.."
 
 prompt_for_environment() {
   echo "Select the environment:"
-  echo "1) Dev (local)"
+  echo "1) Dev (local/minikube)"
   echo "2) Production"
 
   read -r -p "Enter the number (1 or 2): " env_choice

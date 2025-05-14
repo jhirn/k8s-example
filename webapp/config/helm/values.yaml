@@ -8,3 +8,5 @@ ports:
   service: 80
 image:
   name: jhirn/what-time-is-it-right-now-dot-com
+secrets:
+  rails_master_key: 'bbd8c328e46dcea73d48fdbf92d1bcc8'
