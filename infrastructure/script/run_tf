@@ -42,7 +42,12 @@ exec_terraform() {
   echo "  in: $PWD"
 
    # Add -var-file if command is apply or plan
-  if [[ "$command" == "apply" || "$command" == "plan" ]]; then
+  if [[ "$command" == "apply" || \
+        "$command" == "plan" || \
+        "$command" == "destroy" || \
+        "$command" == "validate" || \
+        "$command" == "refresh" || \
+        "$command" == "console" ]]; then
     echo "running $(bold terraform "$command" -var-file="$TF_VARS_FILE" "$@")"
     terraform "$command" -var-file="$TF_VARS_FILE" "$@" 2>&1
   else

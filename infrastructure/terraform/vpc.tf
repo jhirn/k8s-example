@@ -21,4 +21,6 @@ module "vpc" {
   private_subnet_tags = {
     "kubernetes.io/role/internal-elb" = "1"
   }
+
+  // depends_on = [module.eks] // Add this line to prevent error with destroy?
 }
