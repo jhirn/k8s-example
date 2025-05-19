@@ -24,6 +24,11 @@ the component.
 
 __The current implementation of this is incomplete and exsits simply to introduce a convention across projects.__
 
+## Usage
+
+1. Deploy infrastructure (See infrastructure/README.md)
+2. Deploy webapp (See webapp/README.md)
+
 ## Next steps
 
 Here are some of the next steps that can be taken to further improve upon this POC:

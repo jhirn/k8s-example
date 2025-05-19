@@ -38,6 +38,8 @@ run_helm_tests() {
 prompt_for_environment
 namespace=${ENVIRONMENT}
 
+echo
+
 if [ "${1:-}" == "rollback" ]; then
     echo "Available revisions:"
     helm history ${APP_NAME} -n ${namespace}
@@ -52,4 +54,5 @@ else
       -n ${namespace}
 fi
 
+echo -e "\nRunning post-deploy tests..."
 run_helm_tests
