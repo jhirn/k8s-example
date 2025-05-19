@@ -3,8 +3,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    tty: true
+    stdin_open: true
     ports:
       - "3000:3000"
     environment:
       - RAILS_MASTER_KEY=${RAILS_MASTER_KEY:?}
       - RAILS_ENV=development
+    volumes:
+      - .:/rails
