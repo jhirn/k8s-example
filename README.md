@@ -64,10 +64,19 @@ You'll find a number of comment tagged with `TODO` as extension points for the i
 
 ### Known Issues
 
-* `terraform destoy` failed to destroy the InternetGateway (IGW) preventing subnets and other resources from being
-cleaned up. This may be an issue with my helm deployment, a missing "depends_on", or a bug in the
-[aws-vpc-terraform module](https://github.com/terraform-aws-modules/terraform-aws-vpc). I had to manually remove the
-IGW from AWS console and then the VPC could be destroy.
+* `terraform destoy` fails to destroy the VPC because of an ELB resources created by my helm deployment. It may be
+be related to: https://github.com/kubernetes/kubernetes/issues/93390.
+** To clean up manually destroy ELB and security group manually. I'm not automating this because it's a bit sharp.
+
+```bash
+LB_NAME=$(aws elb describe-load-balancers | jq -r '.LoadBalancerDescriptions[].LoadBalancerName')
+aws elb delete-load-balancer --load-balancer-name $LB_NAME
+
+SG_ID=aws ec2 describe-security-groups --filters "Name=group-name,Values=k8s-elb-*" | jq -r '.SecurityGroups[].GroupId'
+aws ec2 delete-security-group --group-id $SG_ID
+```
+You should be able to complete terraform destroy after those resources clean themselves up.
+
 
 * Docker Desktop on Mac was unable to build a `linux/amd64` image. This was resolved by using ARM instances types (`t4g.*`) and `AL2_ARM_64` ami types for the EKS cluster.
 
