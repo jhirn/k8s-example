@@ -16,16 +16,16 @@ terraform {
     }
   }
 
-  # Use after bootstrapping bucket to store state in remte backend.
 
+  # TODO: Implement remote state and dynamo for concurrent use.
   # backend "s3" {
   #   bucket  = "jhirn-liatrio-exercise-tf-state"
   #   key     = "terraform.tfstate"
   #   region  = "us-west-2"
   #   encrypt = true
+  #   dynamodb_table = "tf-state-lock"
   # }
 }
-
 
 provider "aws" {
   region = var.aws_region
