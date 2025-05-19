@@ -62,3 +62,5 @@ cleaned up. This may be an issue with my helm deployment, a missing "depends_on"
 IGW from AWS console and then the VPC could be destroy.
 
 * Docker Desktop on Mac was unable to build a `linux/amd64` image. This was resolved by using ARM instances types (`t4g.*`) and `AL2_ARM_64` ami types for the EKS cluster.
+
+* Deprecated argument `inline_policy` in `terraform-eks` module.

@@ -2,6 +2,11 @@
 
 cd "$(dirname "$0")/.."
 
+# TODO: Support another terraform manager or force the world to use mise =)
+if command -v mise >/dev/null 2>&1; then
+  mise install
+fi
+
 pushd terraform
 
 terraform init
