@@ -41,8 +41,6 @@ This app requires you have aws cli installed and set to a profile with adequate 
 
 Free free to yolo this on a root account if you wish. 😉
 
-
-
 ## Terraform wrapper
 
 This repo makes use of `.tfvars` files and workspaces to manage multiple environments. A wrapper has been provided in `script/run_tf` to run interactively which whill handle configuring the proper workspace and arguments to terraform.
@@ -126,6 +124,13 @@ The first time you deploy an appliction there may be a delay in the service star
 NOTES:
 The service is still being created. Please wait a few minutes and run:
 kubectl get svc what-time-is-it-right-now-dot-com -n production
+```
+
+This may also cause the post deploy tests to fail in which case you can either redeploy or re-run tests with
+
+```bash
+$ helm test ${APP_NAME} -n ${namespace}
+```
 
 4. Validate the deployment
 
