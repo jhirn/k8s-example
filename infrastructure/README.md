@@ -106,16 +106,31 @@ Select the kubernetes environment:
 Enter the number (1 or 2): 2
 
 Switched to context "eks-cluster-production".
-Release "wtrn-webapp" has been upgraded. Happy Helming!
+Release "wtrn-webapp" does not exist. Installing it now.
 NAME: wtrn-webapp
-LAST DEPLOYED: Mon May 19 13:20:49 2025
-NAMESPACE:
+LAST DEPLOYED: Mon May 19 14:05:26 2025
+NAMESPACE: production
 STATUS: deployed
-REVISION: 3
+REVISION: 1
 TEST SUITE: None
 NOTES:
-Forward ports by running `minikube tunnel` in a separate window.
-After that you can access your app at http://localhost:3000
+Your application is now deployed to EKS!
+You can access your application at: http://aa66918b4c7cf49539c24e43361f979d-269827551.us-west-2.elb.amazonaws.com
 ....
 
+```
+
+The first time you deploy an appliction there may be a delay in the service starting up. In that case, NOTES.txt will provide the following instructions:
+
+```
+NOTES:
+The service is still being created. Please wait a few minutes and run:
+kubectl get svc what-time-is-it-right-now-dot-com -n production
+
+4. Validate the deployment
+
+```
+# Note URL will be different
+$ curl http://aa66918b4c7cf49539c24e43361f979d-269827551.us-west-2.elb.amazonaws.com
+{"message":"Automate all the things!","timestamp":1747681941}
 ```

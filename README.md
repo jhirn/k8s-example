@@ -3,6 +3,9 @@
 This is repository is a monorepo containing deployable web application along with infrastructure to configure and deploy
 to an EKS Cluster on AWS.
 
+
+It is intended as starting point for app deployment to an EKS cluster with some basic developer QoL and extension points. It mainly relies on interactive scripts but is ripe for further automation.
+
 ## Prerequisites
 
 This project assumes the following for development across all components:
@@ -22,6 +25,7 @@ the component.
 __The current implementation of this is incomplete and exsits simply to introduce a convention across projects.__
 
 ## Next steps
+
 
 Here are some of the next steps that can be taken to further improve upon this POC:
 
@@ -50,7 +54,7 @@ Here are some of the next steps that can be taken to further improve upon this P
     - Log aggregation.
     - Fine grained modules for VPC/EKS/IAM configuration to improve reuse and reduce state collisions.
     - Consider Terragrunt for improved support across environments.
-    - Configure remote state to `s3` for single source of truth. Use `dynamodb` lock to prevent concurrent modifications on
+    - Configure remote state to `s3` for single source of truth. Use `dynamodb` lock to prevent concurrent modifications.
 
 You'll find a number of comment tagged with `TODO` as extension points for the items above and `DISCUSSION` where a decision was made but alternatives exist.
 
