@@ -33,7 +33,7 @@ Here are some of the next steps that can be taken to further improve upon this P
   - Add additional availability zones and regions to EKS Cluster
 - Deployment
   - Automate version bumping for the application, infrastructure and docker images.
-  - Consider Blue/Green deployment via Recreate strategy (currently using RollingUpdate)
+  - Consider Blue/Green deployment via RollingUpdate rollover strategy.
   - Consider use of GitOPS such as ArgoCD or Flux.
 - Improved IAM configuration
    - Use Terraform to manage deployer, viewer and and additional service accounts.

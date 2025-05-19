@@ -1,6 +1,6 @@
 appName: what-time-is-it-right-now-dot-com
 namespace: default
-replicas: 1
+replicas: 2
 config_map:
   name: wtrn-configmap-v1.0.0
 ports:
@@ -12,3 +12,6 @@ image:
 secrets:
   # TODO: Read from environment. Fail if not set?
   rails_master_key: 'bbd8c328e46dcea73d48fdbf92d1bcc8'
+deployment:
+  maxSurge: '25%'
+  maxUnavailable: '25%'

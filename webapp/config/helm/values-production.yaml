@@ -1,5 +1,5 @@
 namespace: production
-replicas: 1
+replicas: 3
 config_map:
   name: wtrn-configmap-v1.0.0
 image:
