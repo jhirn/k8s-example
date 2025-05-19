@@ -1,18 +1,18 @@
 # What time is right now, dot com
 
-Have you ever been sitting at your computer wondering, "Gee, What time is it right now?". Well now you don't have to wornder. Simply open up a web browser and visit http://whattimeisitnowrightnow.com and you'll be able to know with certainty what time it is, right now.
+Have you ever been sitting at your computer wondering, "Gee, What time is it right now?". Well now you don't have to wonder. Simply open up a web browser and visit http://whattimeisitnowrightnow.com and you'll be able to know with certainty what time it is, right now.
 
 Even when you're on the go, simply pull your phone out and visit http://whattimeisitnow.com in your browser of choice to know with certainty what time it is, right now. Mobile apps are in the works.
 
 ### Disclaimers
  * Time is represented by the number of seconds elapsed since Jan 1, 1970 at midnight in the Coordinated Universal Time Zone. We're partnering with https://www.epochconverter.com/ to make knowing what time it is right now even easier!
- * We continue our legal battle with domain squatter's existing site at http://whattimeisitrightnow.com. Please stay tuned for updates as we're very excited to finally inform people what time it is right now.
+ * We continue our legal battle with domain squatters' existing site at http://whattimeisitrightnow.com. Please stay tuned for updates as we're very excited to finally inform people what time it is right now.
 
 ## Contribution Guide
 
 ### Dev setup
 
-_Only MacOS with homebrew is currently supported. For convienent ENV management, mise is recommended but not configured by this script._
+_Only MacOS with homebrew is currently supported. For convenient ENV management, mise is recommended but not configured by this script._
 
 1. Install dependencies for developing.
 
@@ -37,11 +37,11 @@ The `compose.yml` configures tty and stdin to connect to debugging breakpoints. 
 docker-compose attach app
 ```
 
-You can detach from the container wihtout killing the process by using _CTRL+SHIFT+p + CTRL+SHIFT+q_
+You can detach from the container without killing the process by using _CTRL+SHIFT+p + CTRL+SHIFT+q_
 
 ### Deployment
 
-This application contains helm templates in `config/helm` for deploying to a local or remote Kubernets cluster. Instructions to validate the deployment are printed via NOTES.txt for the respective environment.
+This application contains helm templates in `config/helm` for deploying to a local or remote Kubernetes cluster. Instructions to validate the deployment are printed via NOTES.txt for the respective environment.
 
 #### Local deployment:
 

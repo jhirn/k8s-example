@@ -4,13 +4,13 @@ This repository manages creating Cloud resources for applications at XYZ Inc.
 
 ## Setup
 
-1. Ensure terraform is installed on your system. If you use mise, `script/bootstrap` take care of this for you, but asdf or another solution works fine.
+1. Ensure terraform is installed on your system. If you use mise, `script/bootstrap` takes care of this for you, but asdf or another solution works fine.
 
-2. Run `script/bootstrap` initialize terraform and create workspaces.
+2. Run `script/bootstrap` to initialize terraform and create workspaces.
 
 ## AWS CLI and deploy user
 
-This app requires you have aws cli installed and set to a profile with adequate permisions. I used the following policy which is sufficient but needs additional refinement.
+This app requires you to have aws cli installed and set to a profile with adequate permissions. I used the following policy which is sufficient but needs additional refinement.
 
 ```json
 {
@@ -39,11 +39,11 @@ This app requires you have aws cli installed and set to a profile with adequate 
 }
 ```
 
-Free free to yolo this on a root account if you wish. 😉
+Feel free to yolo this on a root account if you wish. 😉
 
 ## Terraform wrapper
 
-This repo makes use of `.tfvars` files and workspaces to manage multiple environments. A wrapper has been provided in `script/run_tf` to run interactively which whill handle configuring the proper workspace and arguments to terraform.
+This repo makes use of `.tfvars` files and workspaces to manage multiple environments. A wrapper has been provided in `script/run_tf` to run interactively which will handle configuring the proper workspace and arguments to terraform.
 
 ```bash
 $ script/run_tf plan
@@ -75,7 +75,7 @@ Validate your plan with `script/run_tf plan`. If things look ok, ship it with `s
 
 _We'll use the component's deploy script to manually deploy until a proper CI/GitOps workflow is in place_
 
-1. Ensure the relevant cluster is in your `~/.kube/config`. As an example, we'll use eks-cluster-production. run the folowing script to verify the context is available.
+1. Ensure the relevant cluster is in your `~/.kube/config`. As an example, we'll use eks-cluster-production. Run the following script to verify the context is available.
 
 ```bash
 $ kubectl config get-contexts
@@ -86,7 +86,7 @@ CURRENT   NAME                     CLUSTER                                      
 *         minikube                 minikube                                                            minikube                                                            default
 ```
 
-2. If the context is not available, you an add via terraform and targeting the update_kubeconfig resource
+2. If the context is not available, you can add it via terraform by targeting the update_kubeconfig resource
 
 ```bash
 $ run_tf apply -target="null_resource.update_kubeconfig"
@@ -118,7 +118,7 @@ You can access your application at: http://aa66918b4c7cf49539c24e43361f979d-2698
 
 ```
 
-The first time you deploy an appliction there may be a delay in the service starting up. In that case, NOTES.txt will provide the following instructions:
+The first time you deploy an application there may be a delay in the service starting up. In that case, NOTES.txt will provide the following instructions:
 
 ```
 NOTES:
