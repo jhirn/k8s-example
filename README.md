@@ -42,7 +42,7 @@ Here are some of the next steps that can be taken to further improve upon this P
   - Improve VPC security by further customizing the `vpc` module or manual network routing and seucrity groups.
 - Dev QOL
   - webapp
-    - Multi stage docker iamge avoiding COPY for development
+    - Multi stage docker iamge to avoid prebundling Gems and code for iterative development.
     - Make use of .devcontainers installed in Rails project
     - Improvements to local Kubernets deployment if desireable.
   - Infrastructure
