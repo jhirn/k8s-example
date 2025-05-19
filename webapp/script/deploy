@@ -4,6 +4,7 @@ cd "$(dirname "$0")/.."
 
 APP_NAME="wtrn-webapp"
 
+# TODO: This should accept specific versions to deploy.
 prompt_for_environment() {
   echo "Select the kubernetes environment:"
   echo "1) Local (minikube)"
@@ -23,19 +24,32 @@ prompt_for_environment() {
   fi
 }
 
-prompt_for_environment
-namespace=${ENVIRONMENT}
-
-helm upgrade --install ${APP_NAME} ./config/helm/ \
-  --values ./config/helm/values.yaml \
-  -f ./config/helm/values-${namespace}.yaml \
-  --create-namespace \
-  -n ${namespace}
-
-if ! helm test ${APP_NAME} -n ${namespace} 2>&1; then
+run_helm_tests() {
+  if ! helm test ${APP_NAME} -n ${namespace} 2>&1; then
     echo "Test failed. This might be due to the application still starting up."
     echo "The application might take a few minutes to be ready on first deployment."
     echo "You can check the status with: kubectl get pods -n ${namespace}"
     echo "And run the test again with: helm test ${APP_NAME} -n ${namespace}"
-    exit 1
+    return 1
+  fi
+  return 0
+}
+
+prompt_for_environment
+namespace=${ENVIRONMENT}
+
+if [ "${1:-}" == "rollback" ]; then
+    echo "Available revisions:"
+    helm history ${APP_NAME} -n ${namespace}
+
+    read -r -p "Enter revision number to rollback to: " revision
+    helm rollback ${APP_NAME} ${revision} -n ${namespace}
+else
+    helm upgrade --install ${APP_NAME} ./config/helm/ \
+      --values ./config/helm/values.yaml \
+      -f ./config/helm/values-${namespace}.yaml \
+      --create-namespace \
+      -n ${namespace}
 fi
+
+run_helm_tests
