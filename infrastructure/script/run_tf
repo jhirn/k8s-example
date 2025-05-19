@@ -9,18 +9,18 @@ bold() {
 
 prompt_for_workspace() {
   echo "Select the Terraform workspace:"
-  echo "1) Production"
-  echo "2) Development"
+  echo "1) Development"
+  echo "2) Production"
 
   # Fix for shellcheck SC2162: Using -r with read to prevent backslash escapes
   read -r -p "Enter the number (1 or 2): " env_choice
 
   if [ "$env_choice" == "1" ]; then
-    export TF_WORKSPACE="production"
-    export TF_VARS_FILE="tfvars/production.tfvars"
-  elif [ "$env_choice" == "2" ]; then
     export TF_WORKSPACE="dev"
     export TF_VARS_FILE="tfvars/dev.tfvars"
+  elif [ "$env_choice" == "2" ]; then
+    export TF_WORKSPACE="production"
+    export TF_VARS_FILE="tfvars/production.tfvars"
   else
     echo "Invalid choice, exiting..."
     exit 1

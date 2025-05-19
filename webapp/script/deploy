@@ -4,9 +4,9 @@ cd "$(dirname "$0")/.."
 
 
 prompt_for_environment() {
-  echo "Select the environment:"
-  echo "1) Dev (local/minikube)"
-  echo "2) Production"
+  echo "Select the kubernetes environment:"
+  echo "1) Local (minikube)"
+  echo "2) Production (Remote)"
 
   read -r -p "Enter the number (1 or 2): " env_choice
 
@@ -23,7 +23,6 @@ prompt_for_environment() {
 }
 
 prompt_for_environment
-
 namespace=${ENVIRONMENT}
 
 helm upgrade --install  wtrn-webapp ./config/helm/ \

@@ -1,17 +1,18 @@
 #! /bin/bash -euo pipefail
 
 cd "$(dirname "$0")/.."
+
 ## System dependencies via homebrew
+# Install homebrew if necessary
 # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew bundle --file .Brewfile
 
-## Install ruby
-# rbenv install
-
-## Rails setup
-# ./bin/setup
-
-## Enable Kubernetes
+## Enable Kubernetes in docker desktop if you're not into minikube
 # defaults write com.docker.docker KubernetesEnabled -bool true
 # osascript -e 'quit app "Docker"'
 # open -a Docker
+
+script/setup
+minikube start
+docker desktop start
+kubectl config use-context minikube

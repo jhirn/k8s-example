@@ -6,6 +6,7 @@ cd "$(dirname "$0")/.."
 
 version=${1:-latest}
 
+# DISCUSSION: This needs proper management of remote repo and will most likely only run on CI.
 docker login
 docker build -t jhirn/what-time-is-it-right-now-dot-com:${version} .
 docker push jhirn/what-time-is-it-right-now-dot-com:${version}

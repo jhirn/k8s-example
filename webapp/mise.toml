@@ -1,4 +1,6 @@
 [env]
 
 _.path = ["bin", 'script']
+
+# TODO: Provided at runtime by CI server or secret manager.
 RAILS_MASTER_KEY = "bbd8c328e46dcea73d48fdbf92d1bcc8"

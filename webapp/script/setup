@@ -3,7 +3,9 @@
 cd "$(dirname "$0")/.."
 
 # Built-in Rails setup
-./bin/setup --skip-server
+# DISCUSSION: Not needed if running container.
+# ./bin/setup --skip-server
 
-kubectl create namespace dev
-kubectl create namespace production
+
+# Create Kubernetes namespaces
+# DISCUSSION: Is in the right place?
