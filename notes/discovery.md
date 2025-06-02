@@ -22,7 +22,9 @@ _Q: Which tech stack is used at XYZ?_
 
 
 _Q: How do you measure code quality? What impact do you expect to realize by improving it?_
+
 _Q: Are long lead/cycle times a funciton of process or technical constraints?_
+
 _Q: How much downtime is acceptable? What are the business impacts of this downtime (are additional effort/infrstructure costs justifiable)?_
 
 ## Client Request
